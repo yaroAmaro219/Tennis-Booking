@@ -7,7 +7,7 @@
 - Post MVP Goals: Create more functionality like having admin accounts that have the ability to add and delete clinics. Have a section where coach's can post when they are available. 
 
 ## Wireframe:
-![Sign In Wireframe](https://imgur.com/rIDLPvm)
+![Sign In Wireframe](https://i.imgur.com/rIDLPvmt.png)
 ![Home Page Wireframe](https://i.imgur.com/Qr98pYg.png)
 ![Tennis Clubs Wireframe](https://i.imgur.com/Qr98pYg.png)
 ![Club Page Wireframe](https://i.imgur.com/krmdWN7.png)
