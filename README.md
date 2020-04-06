@@ -13,6 +13,7 @@
 ![Club Page Wireframe](https://i.imgur.com/krmdWN7l.png)
 ![Court Schedule Wireframe](https://i.imgur.com/9QAmYuUl.png)
 ![Book Court Wireframe](https://i.imgur.com/p2LY0vVl.png)
+![Profile Wireframe](https://i.imgur.com/vCx9hEJl.png)
 
 ## Entity Relationship Diagram (ERD)
 ![ERD](https://i.imgur.com/WnyoRQDh.png)
@@ -74,11 +75,11 @@ court_booking_index
   | Adding Form | H | 3hrs|  |
   | Working with API | H | 3hrs|  |
   | Creating Join Table | H | 3hrs | |
-  | Designing Website | H | 7hrs | |
+  | Designing Website (CSS) | H | 10hrs | |
   | Connecting Frontend and Backend | H | 3hrs | |
   | Routes | H | 3hrs | |
   | React | H | 10hrs | |
-  | Total | H | 32hrs|  |
+  | Total | H | 35hrs|  |
 ```  
 ## Github: https://github.com/yaroAmaro219/Tennis-Booking/tree/master
 
