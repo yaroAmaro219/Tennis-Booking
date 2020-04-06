@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :users
   resources :courts
 # ============= Auth ====================
 	post '/auth/login', to: 'authentication#login'
