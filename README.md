@@ -51,14 +51,14 @@
 ## Timeframes:
 
 ```
-	| Component | Priority | Estimated Time | Actual Time |
+| Component | Priority | Estimated Time | Actual Time |
   | --- | :---: |  :---: | :---: |
   | Adding Form | H | 3hrs|  |
   | Working with API | H | 3hrs|  |
-	| Creating Join Table | H | 3hrs | |
-	| Designing Website | H | 7hrs | |
+| Creating Join Table | H | 3hrs | |
+| Designing Website | H | 7hrs | |
   | Connecting Frontend and Backend | H | 3hrs | |
-	| Routes | H | 3hrs | |
+| Routes | H | 3hrs | |
   | Total | H | 22hrs|  |
 ```  
 ## Github: https://github.com/yaroAmaro219/Tennis-Booking/tree/master
