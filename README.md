@@ -18,12 +18,18 @@
 ![ERD](https://i.imgur.com/q9Akvuel.png)
 
 ## API Endpoint
-															 courts GET    /courts(.:format)                                                                        courts#index
+courts GET    /courts(.:format)                                                                        courts#index
                                       POST   /courts(.:format)                                                                        courts#create
                                 court GET    /courts/:id(.:format)                                                                    courts#show
                                       PATCH  /courts/:id(.:format)                                                                    courts#update
                                       PUT    /courts/:id(.:format)                                                                    courts#update
                                       DELETE /courts/:id(.:format)                                                                    courts#destroy
+                       booking_courts GET    /bookings/:booking_id/courts(.:format)                                                   courts#index
+                                      POST   /bookings/:booking_id/courts(.:format)                                                   courts#create
+                        booking_court GET    /bookings/:booking_id/courts/:id(.:format)                                               courts#show
+                                      PATCH  /bookings/:booking_id/courts/:id(.:format)                                               courts#update
+                                      PUT    /bookings/:booking_id/courts/:id(.:format)                                               courts#update
+                                      DELETE /bookings/:booking_id/courts/:id(.:format)                                               courts#destroy
                              bookings GET    /bookings(.:format)                                                                      bookings#index
                                       POST   /bookings(.:format)                                                                      bookings#create
                               booking GET    /bookings/:id(.:format)                                                                  bookings#show
@@ -36,7 +42,6 @@
                                       PATCH  /users/:id(.:format)                                                                     users#update
                                       PUT    /users/:id(.:format)                                                                     users#update
                                       DELETE /users/:id(.:format)                                                                     users#destroy
-
 ## Technologies used
 	-bcrypt
 	-jwt
@@ -51,14 +56,14 @@
 ## Timeframes:
 
 ```
- | Component | Priority | Estimated Time | Actual Time |
+  | Component | Priority | Estimated Time | Actual Time |
   | --- | :---: |  :---: | :---: |
   | Adding Form | H | 3hrs|  |
   | Working with API | H | 3hrs|  |
- | Creating Join Table | H | 3hrs | |
- | Designing Website | H | 7hrs | |
+  | Creating Join Table | H | 3hrs | |
+  | Designing Website | H | 7hrs | |
   | Connecting Frontend and Backend | H | 3hrs | |
- | Routes | H | 3hrs | |
+  | Routes | H | 3hrs | |
   | Total | H | 22hrs|  |
 ```  
 ## Github: https://github.com/yaroAmaro219/Tennis-Booking/tree/master
