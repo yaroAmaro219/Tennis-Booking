@@ -19,6 +19,7 @@
 ![ERD](https://i.imgur.com/WnyoRQDh.png)
 
 ## API Endpoint
+#### Server-side routes
 ```  
                                            
 courts GET    /courts(.:format)                           					       courts#index
@@ -61,8 +62,6 @@ court_booking_index
 	-jwt
 	-axios
 	-react-router
-
-## Server-side routes
 
 ## Major challenges:
 	Designing the app as simple as possible and in a fashion that allows for easy scalability
