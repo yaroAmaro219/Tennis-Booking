@@ -14,6 +14,53 @@
 ![Court Schedule Wireframe](https://i.imgur.com/9QAmYuUl.png)
 ![Book Court Wireframe](https://i.imgur.com/p2LY0vVl.png)
 
+## Entity Relationship Diagram (ERD)
+![ERD](https://i.imgur.com/q9Akvuel.png)
+
+## API Endpoint
+															 courts GET    /courts(.:format)                                                                        courts#index
+                                      POST   /courts(.:format)                                                                        courts#create
+                                court GET    /courts/:id(.:format)                                                                    courts#show
+                                      PATCH  /courts/:id(.:format)                                                                    courts#update
+                                      PUT    /courts/:id(.:format)                                                                    courts#update
+                                      DELETE /courts/:id(.:format)                                                                    courts#destroy
+                             bookings GET    /bookings(.:format)                                                                      bookings#index
+                                      POST   /bookings(.:format)                                                                      bookings#create
+                              booking GET    /bookings/:id(.:format)                                                                  bookings#show
+                                      PATCH  /bookings/:id(.:format)                                                                  bookings#update
+                                      PUT    /bookings/:id(.:format)                                                                  bookings#update
+                                      DELETE /bookings/:id(.:format)                                                                  bookings#destroy
+                                users GET    /users(.:format)                                                                         users#index
+                                      POST   /users(.:format)                                                                         users#create
+                                 user GET    /users/:id(.:format)                                                                     users#show
+                                      PATCH  /users/:id(.:format)                                                                     users#update
+                                      PUT    /users/:id(.:format)                                                                     users#update
+                                      DELETE /users/:id(.:format)                                                                     users#destroy
+
+## Technologies used
+	-bcrypt
+	-jwt
+	-axios
+	-react-router
+
+## Server-side routes
+
+## Major challenges:
+	Designing the app as simple as possible and in a fashion that allows for easy scalability
+
+## Timeframes:
+
+	| Component | Priority | Estimated Time | Actual Time |
+  | --- | :---: |  :---: | :---: |
+  | Adding Form | H | 3hrs|  |
+  | Working with API | H | 3hrs|  |
+	| Creating Join Table | H | 3hrs | |
+	| Designing Website | H | 7hrs | |
+  | Connecting Frontend and Backend | H | 3hrs | |
+  | Total | H | 19hrs|  |
+  
+## Github: https://github.com/yaroAmaro219/Tennis-Booking/tree/master
+
 ## Component heirarchy
 	
 > The combination and connections between the different files and directories that interact together to make this app possible. 
@@ -98,49 +145,3 @@ tennis-booking
 	```
 	<br>
 
-## Entity Relationship Diagram (ERD)
-![ERD](https://i.imgur.com/q9Akvuel.png)
-
-## API Endpoint
-															 courts GET    /courts(.:format)                                                                        courts#index
-                                      POST   /courts(.:format)                                                                        courts#create
-                                court GET    /courts/:id(.:format)                                                                    courts#show
-                                      PATCH  /courts/:id(.:format)                                                                    courts#update
-                                      PUT    /courts/:id(.:format)                                                                    courts#update
-                                      DELETE /courts/:id(.:format)                                                                    courts#destroy
-                             bookings GET    /bookings(.:format)                                                                      bookings#index
-                                      POST   /bookings(.:format)                                                                      bookings#create
-                              booking GET    /bookings/:id(.:format)                                                                  bookings#show
-                                      PATCH  /bookings/:id(.:format)                                                                  bookings#update
-                                      PUT    /bookings/:id(.:format)                                                                  bookings#update
-                                      DELETE /bookings/:id(.:format)                                                                  bookings#destroy
-                                users GET    /users(.:format)                                                                         users#index
-                                      POST   /users(.:format)                                                                         users#create
-                                 user GET    /users/:id(.:format)                                                                     users#show
-                                      PATCH  /users/:id(.:format)                                                                     users#update
-                                      PUT    /users/:id(.:format)                                                                     users#update
-                                      DELETE /users/:id(.:format)                                                                     users#destroy
-
-## Technologies used
-	-bcrypt
-	-jwt
-	-axios
-	-react-router
-
-## Server-side routes
-
-## Major challenges:
-	Designing the app as simple as possible and in a fashion that allows for easy scalability
-
-## Timeframes:
-
-	| Component | Priority | Estimated Time | Actual Time |
-  | --- | :---: |  :---: | :---: |
-  | Adding Form | H | 3hrs|  |
-  | Working with API | H | 3hrs|  |
-	| Creating Join Table | H | 3hrs | |
-	| Designing Website | H | 7hrs | |
-  | Connecting Frontend and Backend | H | 3hrs | |
-  | Total | H | 19hrs|  |
-  
-## Github: https://github.com/yaroAmaro219/Tennis-Booking/tree/master
