@@ -15,7 +15,7 @@
 ![Book Court Wireframe](https://i.imgur.com/p2LY0vVl.png)
 
 ## Entity Relationship Diagram (ERD)
-![ERD](https://i.imgur.com/WnyoRQDl.png)
+![ERD](https://i.imgur.com/WnyoRQDh.png)
 
 ## API Endpoint
 courts GET    /courts(.:format)                                                                        courts#index
