@@ -18,31 +18,42 @@
 ![ERD](https://i.imgur.com/WnyoRQDh.png)
 
 ## API Endpoint
-```
-															 courts GET    /courts(.:format)                                                                        courts#index
-                                      POST   /courts(.:format)                                                                        courts#create
-                                court GET    /courts/:id(.:format)                                                                    courts#show
-                                      PATCH  /courts/:id(.:format)                                                                    courts#update
-                                      PUT    /courts/:id(.:format)                                                                    courts#update
-                                      DELETE /courts/:id(.:format)                                                                    courts#destroy
-                       booking_courts GET    /bookings/:booking_id/courts(.:format)                                                   courts#index
-                                      POST   /bookings/:booking_id/courts(.:format)                                                   courts#create
-                        booking_court GET    /bookings/:booking_id/courts/:id(.:format)                                               courts#show
-                                      PATCH  /bookings/:booking_id/courts/:id(.:format)                                               courts#update
-                                      PUT    /bookings/:booking_id/courts/:id(.:format)                                               courts#update
-                                      DELETE /bookings/:booking_id/courts/:id(.:format)                                               courts#destroy
-                             bookings GET    /bookings(.:format)                                                                      bookings#index
-                                      POST   /bookings(.:format)                                                                      bookings#create
-                              booking GET    /bookings/:id(.:format)                                                                  bookings#show
-                                      PATCH  /bookings/:id(.:format)                                                                  bookings#update
-                                      PUT    /bookings/:id(.:format)                                                                  bookings#update
-                                      DELETE /bookings/:id(.:format)                                                                  bookings#destroy
-                                users GET    /users(.:format)                                                                         users#index
-                                      POST   /users(.:format)                                                                         users#create
-                                 user GET    /users/:id(.:format)                                                                     users#show
-                                      PATCH  /users/:id(.:format)                                                                     users#update
-                                      PUT    /users/:id(.:format)                                                                     users#update
-                                      DELETE /users/:id(.:format)                                                                     users#destroy
+```  
+                                           
+courts GET    /courts(.:format)                           					       courts#index
+       POST   /courts(.:format)       								       courts#create
+ court GET    /courts/:id(.:format)   								       courts#show
+       PATCH  /courts/:id(.:format)   								       courts#update
+       PUT    /courts/:id(.:format)   								       courts#update
+       DELETE /courts/:id(.:format)   								       courts#destroy
+court_booking_users
+       GET    /courts/:court_id/booking/:booking_id/users(.:format)                                    users#index
+       POST   /courts/:court_id/booking/:booking_id/users(.:format)                                    users#create court_booking_user 
+       GET    /courts/:court_id/booking/:booking_id/users/:id(.:format)                                users#show
+       PATCH  /courts/:court_id/booking/:booking_id/users/:id(.:format)                                users#update
+       PUT    /courts/:court_id/booking/:booking_id/users/:id(.:format)                                users#update
+       DELETE /courts/:court_id/booking/:booking_id/users/:id(.:format)                                users#destroy         
+court_booking_index
+       GET    /courts/:court_id/booking(.:format)                                                      booking#index
+       POST   /courts/:court_id/booking(.:format)                                                      booking#create
+                        court_booking 
+       GET    /courts/:court_id/booking/:id(.:format)                                                  booking#show
+       PATCH  /courts/:court_id/booking/:id(.:format)                                                  booking#update
+       PUT    /courts/:court_id/booking/:id(.:format)                                                  booking#update
+       DELETE /courts/:court_id/booking/:id(.:format)                                                  booking#destroy
+       GET    /courts(.:format)                                                                        courts#index
+       POST   /courts(.:format)                                                                        courts#create
+       GET    /courts/:id(.:format)                                                                    courts#show
+       PATCH  /courts/:id(.:format)                                                                    courts#update
+       PUT    /courts/:id(.:format)                                                                    courts#update
+       DELETE /courts/:id(.:format)                                                                    courts#destroy
+ users GET    /users(.:format)                                                                         users#index
+       POST   /users(.:format)                                                                         users#create
+  user GET    /users/:id(.:format)                                                                     users#show
+       PATCH  /users/:id(.:format)                                                                     users#update
+       PUT    /users/:id(.:format)                                                                     users#update
+       DELETE /users/:id(.:format)                                                                     users#destroy
+
 ```																			
 ## Technologies used
 	-bcrypt
@@ -66,7 +77,8 @@
   | Designing Website | H | 7hrs | |
   | Connecting Frontend and Backend | H | 3hrs | |
   | Routes | H | 3hrs | |
-  | Total | H | 22hrs|  |
+  | React | H | 10hrs | |
+  | Total | H | 32hrs|  |
 ```  
 ## Github: https://github.com/yaroAmaro219/Tennis-Booking/tree/master
 
@@ -84,6 +96,7 @@ tennis-booking
 		|___ application_record.rb
 		|___ user.rb
 		|___ court.rb
+		|___ court_slot.rb
 
 	|___ views
 		|___ layouts
@@ -94,6 +107,8 @@ tennis-booking
 		|___ application_controller.rb
 		|___ authentication_controller.rb
 		|___ users_controller.rb
+		|___ courts_controller.rb
+		|___ court_slots_controller.rb
 
 	|___ channels
 		|___ application_capable
@@ -105,7 +120,6 @@ tennis-booking
 		|___ application_mailer.rb
 
 |___ client
-			(Refer to React Structure below.)
 	|___ src
 		|___ components
 			|___ Header.jsx
@@ -121,6 +135,10 @@ tennis-booking
 
 |___ db
 	|___ seeds.rb
+	|___ migrate
+		|___ create_users.rb
+		|___ create_join_table_courts_users.rb
+		|___ create_courts.rb
 
 |___ config
 	|___ application.rb      
