@@ -50,6 +50,7 @@
 
 ## Timeframes:
 
+```
 	| Component | Priority | Estimated Time | Actual Time |
   | --- | :---: |  :---: | :---: |
   | Adding Form | H | 3hrs|  |
@@ -57,8 +58,9 @@
 	| Creating Join Table | H | 3hrs | |
 	| Designing Website | H | 7hrs | |
   | Connecting Frontend and Backend | H | 3hrs | |
-  | Total | H | 19hrs|  |
-  
+	| Routes | H | 3hrs | |
+  | Total | H | 22hrs|  |
+```  
 ## Github: https://github.com/yaroAmaro219/Tennis-Booking/tree/master
 
 ## Component heirarchy
@@ -142,6 +144,4 @@ tennis-booking
 	|___ routes.rb 
 	|___ spring.rb
 			
-	```
-	<br>
 
