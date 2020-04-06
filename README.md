@@ -18,7 +18,8 @@
 ![ERD](https://i.imgur.com/WnyoRQDh.png)
 
 ## API Endpoint
-courts GET    /courts(.:format)                                                                        courts#index
+```
+															 courts GET    /courts(.:format)                                                                        courts#index
                                       POST   /courts(.:format)                                                                        courts#create
                                 court GET    /courts/:id(.:format)                                                                    courts#show
                                       PATCH  /courts/:id(.:format)                                                                    courts#update
@@ -42,6 +43,7 @@ courts GET    /courts(.:format)                                                 
                                       PATCH  /users/:id(.:format)                                                                     users#update
                                       PUT    /users/:id(.:format)                                                                     users#update
                                       DELETE /users/:id(.:format)                                                                     users#destroy
+```																			
 ## Technologies used
 	-bcrypt
 	-jwt
