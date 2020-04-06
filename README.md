@@ -2,9 +2,9 @@
 
 ## Overview
 
-- The tennis booking app allows members of a tennis club to log in and book a court at a specific time and date. They can see what time's are available, and what time's have been taken. They are also able to see different clinics and whose the instructor and whose signed up for them. 
-- MVP Goals: Create a db for all users and booking actions on courts. Have this connect with the react front end and have it work smoothly and look good
-- Post MVP Goals: Create more functionality like having admin accounts that have the ability to add and delete clinics. Have a section where coach's can post when they are available. 
+- The tennis booking app allows people to log in and book a court at a specific time and date. They can see what time's are available, and what time's have been taken. 
+- MVP Goals: Create a db for all users and booking actions on courts. Have this connect with the react front end and have it work smoothly and look good.
+- Post MVP Goals: Create more functionality like having admin accounts that have the ability to add and delete clinics. Have a section where coach's can post when they are available. They are also able to see different clinics and whose the instructor and whose signed up for them. 
 
 ## Wireframe
 ![Sign In Wireframe](https://i.imgur.com/rIDLPvml.png)
