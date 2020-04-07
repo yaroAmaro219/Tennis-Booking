@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-
-  resources :courts
+  resources :courts do
+		resources :reservations
+	end
 # ============= Auth ====================
 	post '/auth/login', to: 'authentication#login'
 	get '/auth/verify', to: 'authentication#verify'
