@@ -4,8 +4,7 @@ class CourtsController < ApplicationController
   # GET /courts
   def index
     @courts = Court.all
-
-    render json: @courts
+    render json: @courts, include: :reservations, status: :ok
   end
 
   # GET /courts/1
@@ -46,6 +45,6 @@ class CourtsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def court_params
-      params.require(:court).permit(:name)
+      params.require(:court).permit(:name, :slot)
     end
 end
