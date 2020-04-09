@@ -1,6 +1,6 @@
 class CourtsController < ApplicationController
-  before_action :set_court, only: [:show, :update, :destroy]
-
+  before_action :set_court, only: [:show, :update, :destroy, :add_reservation]
+  before_action :authorize_request, only: [:create, :update, :destroy, :add_reservation ]
   # GET /courts
   def index
     @courts = Court.all
@@ -9,7 +9,7 @@ class CourtsController < ApplicationController
 
   # GET /courts/1
   def show
-    render json: @court
+    render json: @court, include: :reservations
   end
 
   # POST /courts
@@ -36,6 +36,12 @@ class CourtsController < ApplicationController
   def destroy
     @court.destroy
   end
+	
+	def add_reservation
+      @reservation = Reservation.find(parsms[:start_time])
+      @court.reservation << @reservation
+      render json: @court, include: :reservations
+	end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -45,6 +51,6 @@ class CourtsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def court_params
-      params.require(:court).permit(:name, :slot)
+      params.require(:court).permit(:name)
     end
 end
