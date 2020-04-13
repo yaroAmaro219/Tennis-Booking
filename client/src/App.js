@@ -6,13 +6,14 @@ import Register from './components/Register'
 import Profile from './components/Profile'
 import ShowCourt from './components/ShowCourt'
 import Court from './components/Court'
+import UpdateReservation from './components/UpdateReservation'
 import './App.css'
 
 import {
   loginUser,
   registerUser,
   showCourt,
-  showCourtItem,
+  // showCourtItem,
   showReservation,
   postReservation,
   showReservationItem,
@@ -30,13 +31,11 @@ class App extends Component {
     this.state = {
       date: '',
       currentUser: null,
-      reservation: [],
+      reservation: null,
       court: [],
       courtItem: null,
       selectedCourt: '',
-      formData: {
-        name: "",
-      },
+      name: '',
       selectedSlot: "",
       authFormData: {
         email: "",
@@ -79,7 +78,7 @@ class App extends Component {
 
   getCourtItem = async (id) => {
     console.log(id)
-    const courtItem = await showCourtItem(id);
+    const courtItem = await showReservationItem(id);
     this.setState({courtItem})
   }
 
@@ -90,13 +89,36 @@ class App extends Component {
     this.setState({reservation})
   }
 
-  updateReservation = async (reservationItem) => {
-    const updatedReservationItem = await putReservation(this.state.name)
-    console.log(updatedReservationItem)
+  updateReservation = async (id) => {
+    const updatedReservationItem = await putReservation(id, { name: this.state.name })
     this.setState(prevState => ({
-      reservation: prevState.reservation.filter(singleReservation => singleReservation.id !== reservationItem.id)
+      reservation: {
+        ...prevState.reservation,
+        reservations: prevState.reservation.reservations.map((res) => {
+          return res.id === id 
+            ?
+            updatedReservationItem
+            :
+            res
+        })
+      },
+      name: '',
+    }))
+    this.props.history.push('/courts')
+  }
+
+  deleteReservation = async (id) => {
+    await destroyReservation(id)
+    this.setState(prevState => ({
+      reservation: {
+        ...prevState.reservation,
+        reservations: prevState.reservation.reservations.filter((res) => {
+          return res.id !== id 
+        })
+      }
     }))
   }
+
 
 
 
@@ -113,14 +135,23 @@ class App extends Component {
   //   this.setState({reservationItem})
   // }
 
-  addReservation = async () => {
-      const newReservation = await postReservation(this.state.match.params.id, this.state.name )
+  addReservation = async (id, start, end) => {
+    const newReservation = await postReservation(id, {
+      name: this.state.name,
+      start_time: start,
+      end_time: end
+      })
       this.setState(prevState => ({
-      reservation: [...prevState.reservation, newReservation],
-        formData: {
+      reservation: newReservation,
           name: ""
-           }
          }))
+  }
+
+  setReservationForm = (name) => {
+    this.setState({
+        name: name
+      })
+
   }
 
   // newReservation = async (e) => {
@@ -262,16 +293,11 @@ class App extends Component {
               getReservation={this.getReservation}
               getReservationItem={this.getReservationItem}
               setReservationForm={this.setReservationForm}
-                formData={this.state.formData}
-              addReservation={this.addReservation}
+              formData={this.state.formData}
+                addReservation={this.addReservation}
+                deleteReservation={this.deleteReservation}
               {...props}
               handleChange={this.handleChange} />)} />
-          {/* <Route exact path="/clubs" render={(props) => (
-            <ShowClubs
-              club={this.state.club}
-              court={this.state.court}
-              getClubItem={this.getClubItem}
-              handleChange={this.handleChange} /> )} /> */}
           <Route exact path="/users" render={(props) => (
             <Profile
               {...props}
@@ -279,7 +305,18 @@ class App extends Component {
               date={this.date}
               getProfileItem={this.getProfileItem}
               formData={this.state.formData}
-              handleChange={this.handleChange} /> )} />
+              handleChange={this.handleChange} />)} />
+            <Route exact path="/courts/:court_id/reservations/:id" render={(props) => {
+              const reservation = this.state.reservation.reservations.find((res) => res.id === parseInt(props.match.params.id))
+              return <UpdateReservation
+                reservation={reservation}
+                handleChange={this.handleChange}
+                name={this.state.name}
+                setReservationForm={this.setReservationForm}
+                updateReservation={this.updateReservation}
+                deleteReservation={this.deleteReservation}
+              />
+            }}/>
           </Switch>
           </div>
       </div>

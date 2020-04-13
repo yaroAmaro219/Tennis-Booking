@@ -42,22 +42,20 @@ export const showCourt = async () => {
 	return resp.data
 }
 
-export const showCourtItem = async (id) => {
-  const resp = await api(`/courts/${id}`)
-  return resp.data;
-  console.log(resp)
-}
+// export const showCourtItem = async (id) => {
+//   const resp = await api(`/courts/${id}`)
+//   return resp.data;
+// }
 
 //============ Reservations =========
 
 export const showReservation = async (courtId) => {
   const resp = await api.get(`/courts/${courtId}`)
-  console.log(courtId)
   return resp.data
 }
 
-export const putReservation = async (courtId, body) => {
-	const resp = await api.put(`/courts/${courtId}`)
+export const putReservation = async (id, body) => {
+  const resp = await api.put(`/courts/:id/reservations/${id}`, {reservation: body})
 	return resp.data
 }
 
@@ -67,12 +65,12 @@ export const showReservationItem = async (id) => {
 }
 
 export const postReservation = async (courtId, name) => {
-  const resp = await api.post(`/courts/${courtId}`, {court: name})
+  const resp = await api.post(`/courts/${courtId}/reservations`, {reservation: name})
   return resp.data
 }
 
-export const destroyReservation = async (courtId) => {
-  const resp = await api.delete(`/courts/${courtId}`);
+export const destroyReservation = async (id) => {
+  const resp = await api.delete(`/courts/:id/reservations/${id}`);
   return resp.data;
 }
 

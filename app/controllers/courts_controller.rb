@@ -1,12 +1,11 @@
 class CourtsController < ApplicationController
   before_action :set_court, only: [:show, :update, :destroy, :add_reservation]
-  #before_action :authorize_request, only: [:create, :update, :destroy, :add_reservation ]
+  before_action :authorize_request, only: [:create, :update, :destroy, :add_reservation ]
   # GET /courts
   def index
     @courts = Court.all
     render json: @courts, include: :reservations, status: :ok
   end
-
   # GET /courts/1
   def show
     render json: @court, include: :reservations

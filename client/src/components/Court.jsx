@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import { Form } from
   'antd';
 import DatePicker from 'react-date-picker'
@@ -17,172 +18,6 @@ class Court extends Component {
         name: '',
         start_time: '',
       },
-
-      data: [
-        // {
-        //   id: 1,
-        //   name:
-        //     <Form>
-        //       <input
-        //         name="name"
-        //         type="text"
-        //         onChange={this.props.handleChange}
-        //       />
-        //       <button
-        //         onClick={(reservation) => { this.setState({ reservation: reservation }) }}>
-        //         Submit
-        //         </button>
-        //     </Form>,
-
-        //   start_time: '7:00AM',
-        //   end_time: '8:00AM'
-        // },
-        // {
-        //   id: 2,
-        //   name:
-        //     <Form>
-        //       <input
-        //         name="name"
-        //         type="text"
-        //         onChange={this.props.handleChange} />
-        //       <button> Submit </button>
-        //     </Form>,
-        //   start_time: '8:00AM',
-        //   end_time: '9:00AM'
-        // },
-        // {
-        //   name:
-        //     <Form>
-        //       <input
-        //         name="name"
-        //         type="text"
-        //         onChange={this.props.handleChange} />
-        //       <button>Submit</button>
-        //     </Form>,
-        //   start_time: '9:00AM',
-        //   end_time: '10:00AM',
-        // },
-        // {
-        //   name:
-        //     <Form onSubmit={this.handleSubmit}>
-        //       <input
-        //         name="name"
-        //         type="text"
-        //         onChange={this.props.handleChange} /><button>Submit</button></Form>,
-        //   start_time: '10:00AM',
-        //   end_time: '11:00AM',
-        // },
-        // {
-        //   name:
-        //     <Form><input
-        //       name="name"
-        //       type="text"
-
-        //       onChange={this.props.handleChange} /><button>Submit</button></Form>,
-        //   start_time: '11:00AM',
-        //   end_time: '12:00AM',
-        // },
-        // {
-        //   name:
-        //     <Form><input
-        //       name="name"
-        //       type="text"
-
-        //       onChange={this.props.handleChange} /><button>Submit</button></Form>,
-        //   start_time: '12:00AM',
-        //   end_time: '1:00PM',
-        // },
-        // {
-        //   name:
-        //     <Form><input
-        //       name="name"
-        //       type="text"
-
-        //       onChange={this.props.handleChange} /><button>Submit</button></Form>,
-        //   start_time: '1:00PM',
-        //   end_time: '2:00PM'
-        // },
-        // {
-        //   name:
-        //     <Form><Input
-        //       name="name"
-        //       type="text"
-        //       onChange={this.props.handleChange} />
-        //       <button>Submit</button>
-        //     </Form>,
-        //   start_time: '2:00PM',
-        //   end_time: '3:00PM',
-        // },
-        // {
-        //   name:
-        //     <Form><input
-        //       name="name"
-        //       type="text"
-
-        //       onChange={this.props.handleChange} /><button>Submit</button></Form>,
-        //   start_time: '3:00PM',
-        //   end_time: '4:00PM',
-        // },
-        // {
-        //   name:
-        //     <Form><input
-        //       name="name"
-        //       type="text"
-
-        //       onChange={this.props.handleChange} /><button>Submit</button></Form>
-        //   ,
-        //   start_time: '4:00PM',
-        //   end_time: '5:00PM',
-        // },
-        // {
-        //   name:
-        //     <Form><input
-        //       name="name"
-        //       type="text"
-        //       onChange={this.props.handleChange} />
-        //       <button>
-
-
-        //         Submit
-        //        </button>
-        //     </Form>,
-        //   start_time: '5:00PM',
-        //   end_time: '6:00PM'
-        // },
-        // {
-        //   name:
-        //     <Form><input
-        //       name="name"
-        //       type="text"
-        //       onChange={this.props.handleChange} />
-        //       <button>Submit</button></Form>,
-        //   start_time: '6:00PM',
-        //   end_time: '7:00PM'
-        // }
-      ],
-      columns: [
-        // {
-        //   title: 'Full Name',
-        //   width: 30,
-        //   dataIndex: 'name',
-        //   key: 'name',
-        //   fixed: 'left',
-        //   Cell: this.input
-        // },
-        // {
-        //   title: 'Start Time',
-        //   width: 20,
-        //   dataIndex: 'start_time',
-        //   key: 'start_time',
-        //   fixed: 'left',
-        // },
-        // {
-        //   title: 'End Time',
-        //   dataIndex: 'end_time',
-        //   key: 'end_time',
-        //   width: 20,
-        // },
-      ],
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -304,6 +139,7 @@ class Court extends Component {
 
   componentDidMount() {
     this.props.getReservation(this.props.match.params.id);
+
   }
 
   reservations = () => {
@@ -514,13 +350,19 @@ class Court extends Component {
         end_time: '3:00PM'
       }
     ]
-    let form = timeSlots.map((time) => (
-      <Form onSubmit={this.props.addReservation}>
+    let form = timeSlots.filter((time) => {
+      return this.props.reservation
+        &&
+        !this.props.reservation.reservations.map((res) => res.start_time).includes(time.start_time)
+    }).map((time) => (
+      <Form>
         <input
           name="name"
           type="text"
           onChange={this.props.handleChange} />
-        <button>Submit</button>
+        <button onClick={(e) => {
+          this.props.addReservation(this.props.match.params.id, time.start_time, time.end_time)
+        }}>Submit</button>
         <div>
           {time.start_time} -
           {time.end_time}
@@ -532,7 +374,7 @@ class Court extends Component {
     return (
       <>
         <div>
-          {this.props.reservation.name
+          {this.props.reservation
             &&
             <h1>
               {this.props.reservation.name.toUpperCase()} Court
@@ -542,6 +384,19 @@ class Court extends Component {
             onChange={this.onChange}
             value={this.state.date}
           />
+          <div>
+            {this.props.reservation  
+              &&
+              this.props.reservation.reservations.map((res) => (
+              <>
+                <p>{res.name}</p>
+                <p>{res.start_time}</p>
+                  <p>{res.end_time}</p>
+                  <Link to={`/courts/${this.props.reservation.id}/reservations/${res.id}`}><button>Edit</button></Link>
+                  <button onClick={() => (this.props.deleteReservation(res.id))}>Delete</button>
+              </>
+            ))}
+          </div>
           {form}
         </div>
 
