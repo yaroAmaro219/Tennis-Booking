@@ -8,15 +8,15 @@
 
 User.destroy_all
 Court.destroy_all
-Reservation.destroy_all
 
-User.create!(first_name: "admin", user_name: "admin", email: "admin@email.com", password: "123456")
-User.create!(first_name: "admin", user_name: "admin", email: "admin2@email.com", password: "123456")
+user1 = User.create!(first_name: "admin",  email: "admin222@email.com", password: "123456")
+user2 = User.create!(first_name: "admin",  email: "admin223@email.com", password: "123456")
 
-east_court = Court.create!(name: "east")
-west_court = Court.create!(name: "west")
+east = Court.create!(name: "east")
+west = Court.create!(name: "west")
 
-Reservation.create!(user_id: 1, court_id: 1, name: "admin", start_time: "7:00AM", end_time: "8:00AM")
+Reservation.create!(court_id: east.id, user_id: user1.id, name: "Adam", start_time: "1:00PM", end_time:"2:00PM")
 
 puts "#{Court.count} courts were created"
 puts "#{User.count} users were created"
+

@@ -1,6 +1,6 @@
 class CourtsController < ApplicationController
   before_action :set_court, only: [:show, :update, :destroy, :add_reservation]
-  before_action :authorize_request, only: [:create, :update, :destroy, :add_reservation ]
+  #before_action :authorize_request, only: [:create, :update, :destroy, :add_reservation ]
   # GET /courts
   def index
     @courts = Court.all
@@ -14,6 +14,7 @@ class CourtsController < ApplicationController
 
   # POST /courts
   def create
+    
     @court = Court.new(court_params)
 
     if @court.save
@@ -38,7 +39,7 @@ class CourtsController < ApplicationController
   end
 	
 	def add_reservation
-      @reservation = Reservation.find(parsms[:start_time])
+      @reservation = Reservation.find(params[:start_time])
       @court.reservation << @reservation
       render json: @court, include: :reservations
 	end
