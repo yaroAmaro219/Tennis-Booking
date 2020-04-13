@@ -348,6 +348,18 @@ class Court extends Component {
       {
         start_time: '2:00PM',
         end_time: '3:00PM'
+      },
+      {
+        start_time: '3:00PM',
+        end_time: '4:00PM'
+      },
+      {
+        start_time: '5:00PM',
+        end_time: '6:00PM'
+      },
+      {
+        start_time: '7:00PM',
+        end_time: '8:00PM'
       }
     ]
     let form = timeSlots.filter((time) => {
@@ -356,6 +368,10 @@ class Court extends Component {
         !this.props.reservation.reservations.map((res) => res.start_time).includes(time.start_time)
     }).map((time) => (
       <Form>
+        <h1>
+          {time.start_time} -
+          {time.end_time}
+        </h1>
         <input
           name="name"
           type="text"
@@ -363,10 +379,8 @@ class Court extends Component {
         <button onClick={(e) => {
           this.props.addReservation(this.props.match.params.id, time.start_time, time.end_time)
         }}>Submit</button>
-        <div>
-          {time.start_time} -
-          {time.end_time}
-        </div>
+        
+        
       </Form>
     ))
     console.log(this.state)
