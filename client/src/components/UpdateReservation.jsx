@@ -7,11 +7,12 @@ class UpdateReservation extends Component {
   render() {
     return (
       <div>
-        <h3>Hello Reservation</h3>
+        <h3>Hello {this.props.currentUser.email} Reservation</h3>
         <form onSubmit={(e) => {
           e.preventDefault();
           this.props.updateReservation(this.props.reservation.id)
         }}>
+          
           <input
             type="text"
             name="name"

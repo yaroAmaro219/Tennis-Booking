@@ -31,23 +31,59 @@ nav {
   width: 10%;
 } */
 
- h1.home {
-   text-align: center;
-   display:-ms-flexbox;
- }
+h1.home {
+  text-align: center;
+  display: -ms-flexbox;
+}
 
- div.nav {
-   display: -ms-inline-flexbox;
- }
- 
+div.nav {
+  display: -ms-inline-flexbox;
+}
+
 div {
   padding: 1%;
   /* display: inline-block; */
-  text-align:center;
+  text-align: center;
+}
+
+div.reservation {
+  display: inline-flex;
+  /* flex-wrap: wrap; */
+  height: 15%;
+
+}
+
+div.reservation p {
+  padding: 5%;
+  margin: 5%;
+}
+
+div button {
+  flex-wrap: wrap;
+}
+
+div.reservationForm {
+  display: inline-flex;
+}
+
+div.image img {
+  display: inline-flex;
+  background-size: cover;
+  width: 100%;
 }
 
 nav h3.login {
   align-items: flex-end;
+}
+
+p.time {
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+  font-style: bold;
+}
+
+button.logout {
+  text-align: rigth;
 }
 
 .ant-table-fixed {
@@ -59,3 +95,4 @@ nav h3.login {
   font-size: 12px;
   margin-top: -4px;
 }
+

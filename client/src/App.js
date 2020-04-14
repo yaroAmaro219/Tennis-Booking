@@ -7,6 +7,7 @@ import Profile from './components/Profile'
 import ShowCourt from './components/ShowCourt'
 import Court from './components/Court'
 import UpdateReservation from './components/UpdateReservation'
+import Footer from './components/Footer'
 import './App.css'
 
 import {
@@ -57,14 +58,46 @@ class App extends Component {
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
     var hours = new Date().getHours(); //Current Hours
-    var min = new Date().getMinutes(); //Current Minutes
+    var min = new Date().getMinutes();
+    var minu =
+      min === 1 ? min = '01' : min = min;
+      min === 2 ? min = '02' : min = min;
+      min === 3 ? min = '03' : min = min;
+      min === 4 ? min = '04' : min = min;
+      min === 5 ? min = '05' : min = min;
+      min === 6 ? min = '06' : min = min;
+      min === 7 ? min = '07' : min = min;
+      min === 8 ? min = '08' : min = min;
+      min === 9 ? min = '09' : min = min;
     var time = (hours >= 12) ? "PM" : "AM";
-    var hours12 = hours === 13 ? hours = '1:00' : hours = hours ;
-                  hours === 14 ? hours = '2:00' : hours = hours;
-    hours === 15 ? hours = '3:00' : hours = hours;
+    var hours12 =
+      hours === 1 ? hours = '1:00' : hours = hours;
+      hours === 2 ? hours = '2:00' : hours = hours;
+      hours === 3 ? hours = '3:00' : hours = hours;
+      hours === 4 ? hours = '4:00' : hours = hours;
+      hours === 5 ? hours = '5:00' : hours = hours;
+      hours === 6 ? hours = '6:00' : hours = hours;
+      hours === 7 ? hours = '7:00' : hours = hours;
+      hours === 8 ? hours = '8:00' : hours = hours;
+      hours === 9 ? hours = '9:00' : hours = hours;
+      hours === 10 ? hours = '10:' : hours = hours;
+      hours === 11 ? hours = '11:00' : hours = hours;
+      hours === 12 ? hours = '12:00' : hours = hours;
+      hours === 13 ? hours = '1:00' : hours = hours;
+      hours === 14 ? hours = '2:00' : hours = hours;
+      hours === 15 ? hours = '3:00' : hours = hours;
+      hours === 16 ? hours = '4:00' : hours = hours;
+      hours === 17 ? hours = '5:00' : hours = hours;
+      hours === 18 ? hours = '6:00' : hours = hours;
+      hours === 19 ? hours = '7:00' : hours = hours;
+      hours === 20 ? hours = '8:00' : hours = hours;
+      hours === 21 ? hours = '9:00' : hours = hours;
+      hours === 22 ? hours = '10:00' : hours = hours;
+      hours === 23 ? hours = '11:00' : hours = hours;
+      hours === 24 ? hours = '12:00' : hours = hours;
     this.setState({
       date:
-      month + '/' + date + '/' + year + ' ' + hours12 + ' ' + time
+      month + '/' + date + '/' + year + ' ' + hours + minu + ' ' + time
     });
   }
 
@@ -119,22 +152,6 @@ class App extends Component {
     }))
   }
 
-
-
-
-  // updateReservation = async (reservationItem) => {
-  //   const updatedReservationItem = await putReservation(this.state.formData, reservationItem.id)
-  //   this.setState(prevState => ({
-  //     reservation: prevState.reservation.filter(singleReservation => singleReservation.id !== reservationItem.id)
-  //   }))
-  // }
-
-
-  // getReservationItem = async (id) => {
-  //   const reservationItem = await this.showReservationItem(id);
-  //   this.setState({reservationItem})
-  // }
-
   addReservation = async (id, start, end) => {
     const newReservation = await postReservation(id, {
       name: this.state.name,
@@ -154,35 +171,6 @@ class App extends Component {
 
   }
 
-  // newReservation = async (e) => {
-  //   e.preventDefault();
-  //   const reservation = await postReservation(this.state.formData);
-  //   this.setState(prevState => ({
-  //     reservation: [...prevState.reservation, reservation],
-  //     formData: {
-  //       name: ""
-  //     }
-  //   }))
-  // }
-  
-  // setReservationForm = (reservation) => {
-  //   this.setState({
-  //     formData: {
-  //       name: reservation.name,
-  //       start_time: reservation.start_time,
-  //       end_time: reservation.end_time
-  //     }
-  //   })
-  // }
-
-  // addReservationToCourt = async (courtItem) => {
-  //   const newReservation = this.state.reservation.find(reservation => reservation.name === this.state.selectedCourt)
-  //   const newReservationItem = await putCourtReservation(courtItem.id, newReservation.handleLogin)
-  //   this.setState({
-  //     courtItem: newReservationItem
-  //   })
-  // }
-
   // ============= Auth =================
 
 
@@ -192,35 +180,33 @@ class App extends Component {
 
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData)
-    this.setState({ currentUser })
+    this.setState({ currentUser: currentUser })
     this.props.history.push("/courts")
   }
 
   handleRegister = async (e) => {
     e.preventDefault();
     const currentUser = await registerUser(this.state.authFormData);
-    this.setState({currentUser})
+    this.setState({ currentUser: currentUser })
+    this.props.history.push("/")
   }
 
   handleVerify = async () => {
     const currentUser = await verifyUser();
     if (currentUser) {
-      this.setState({currentUser})
+      this.setState({currentUser: currentUser})
     }
   }
 
   handleLogout = () => {
     localStorage.removeItem("jwt");
-    this.setState({
-      currentUser: null
-    })
+    this.setState({currentUser: null})
     removeToken();
     this.props.history.push("/login")
   }
 
   authHandleChange = (e) => {
     const { name, value } = e.target;
-
     this.setState(prevState => ({
       authFormData: {
         ...prevState.authFormData,
@@ -240,7 +226,7 @@ class App extends Component {
   // =========== Render ===========
 
   render() {
-    console.log(this.state)
+    console.log(this.state.authFormData)
     return (
       <div>
         <nav>
@@ -248,16 +234,14 @@ class App extends Component {
           {this.state.currentUser
             ?
             <div>
-              <h3>Hi {this.state.currentUser.first_name && this.state.currentUser.first_name}</h3>
-              <button onClick={this.handleLogout}>logout</button>
               <ul>
                 <Link class="courts" to="/courts">  Courts </Link>
-                <Link to="/events">  Events </Link>
                 <Link to="/users">  Profile  </Link>
                 <h1 class="date">
                   {this.state.date}
-                  </h1>
+                </h1>
               </ul>
+              <button class="logout" onClick={this.handleLogout}>logout</button>
             </div>
             :
             <button onClick={this.handleLoginButton}>Login</button>
@@ -279,9 +263,8 @@ class App extends Component {
           <ShowCourt
             court={this.state.court}
             formData={this.state.formData}
-            
             getCourtItem={this.getCourtItem}
-            // handleChange={this.handleChange}
+            handleChange={this.handleChange}
               />)} />
           <Route exact path="/courts/:id" render={(props) => (
             <Court
@@ -294,13 +277,12 @@ class App extends Component {
               getReservationItem={this.getReservationItem}
               setReservationForm={this.setReservationForm}
               formData={this.state.formData}
-                addReservation={this.addReservation}
-                deleteReservation={this.deleteReservation}
+              addReservation={this.addReservation}
+              deleteReservation={this.deleteReservation}
               {...props}
               handleChange={this.handleChange} />)} />
           <Route exact path="/users" render={(props) => (
             <Profile
-              {...props}
               currentUser={this.state.currentUser}
               date={this.date}
               getProfileItem={this.getProfileItem}
@@ -309,16 +291,23 @@ class App extends Component {
             <Route exact path="/courts/:court_id/reservations/:id" render={(props) => {
               const reservation = this.state.reservation.reservations.find((res) => res.id === parseInt(props.match.params.id))
               return <UpdateReservation
+                date={this.state.date}
                 reservation={reservation}
                 handleChange={this.handleChange}
                 name={this.state.name}
                 setReservationForm={this.setReservationForm}
                 updateReservation={this.updateReservation}
                 deleteReservation={this.deleteReservation}
+                currentUser={this.state.currentUser}
+                authFormData={this.state.authFormData}
               />
             }}/>
           </Switch>
-          </div>
+        </div>
+        <div class="image">
+                  <img src="https://i.imgur.com/GufjsYr.jpg" title="source: imgur.com" />
+                  </div>
+        <Footer />
       </div>
     )
   }

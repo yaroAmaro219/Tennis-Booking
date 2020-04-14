@@ -42,20 +42,15 @@ export const showCourt = async () => {
 	return resp.data
 }
 
-// export const showCourtItem = async (id) => {
-//   const resp = await api(`/courts/${id}`)
-//   return resp.data;
-// }
-
 //============ Reservations =========
 
-export const showReservation = async (courtId) => {
-  const resp = await api.get(`/courts/${courtId}`)
+export const showReservation = async (id) => {
+  const resp = await api.get(`/courts/${id}`)
   return resp.data
 }
 
-export const putReservation = async (id, body) => {
-  const resp = await api.put(`/courts/:id/reservations/${id}`, {reservation: body})
+export const putReservation = async (id, name) => {
+  const resp = await api.put(`/courts/:id/reservations/${id}`, {reservation: name})
 	return resp.data
 }
 
@@ -64,8 +59,8 @@ export const showReservationItem = async (id) => {
   return resp.data
 }
 
-export const postReservation = async (courtId, name) => {
-  const resp = await api.post(`/courts/${courtId}/reservations`, {reservation: name})
+export const postReservation = async (id, name) => {
+  const resp = await api.post(`/courts/${id}/reservations`, {reservation: name})
   return resp.data
 }
 
@@ -74,10 +69,6 @@ export const destroyReservation = async (id) => {
   return resp.data;
 }
 
-// export const putCourtReservation = async  (courtId) => {
-//   const resp = await api.get(`/courts/${courtId}`)
-//   return resp.data
-// }
 
 
 
