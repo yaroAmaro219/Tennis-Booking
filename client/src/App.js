@@ -89,7 +89,6 @@ class App extends Component {
 
   getCourt = async () => {
     const court = await showCourt();
-    console.log(court)
     this.setState({court})
   }
 

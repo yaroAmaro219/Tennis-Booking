@@ -57886,3 +57886,380 @@ Completed 401 Unauthorized in 210ms (Views: 0.2ms | ActiveRecord: 0.2ms | Alloca
   [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2583268873432256835)[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/auth/verify" for ::1 at 2020-04-14 16:37:16 -0400
+Started GET "/courts" for ::1 at 2020-04-14 16:37:16 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CourtsController#index as HTML
+  [1m[35m (30.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#verify as HTML
+  [1m[36mCourt Load (3.6ms)[0m  [1m[34mSELECT "courts".* FROM "courts"[0m
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 18.1ms | Allocations: 11935)
+
+
+  
+NameError (uninitialized constant ApplicationController::Active
+Did you mean?  ActiveJob):
+  
+app/controllers/application_controller.rb:20:in `rescue in authorize_request'
+app/controllers/application_controller.rb:17:in `authorize_request'
+  [1m[36mReservation Load (36.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mReservation Load (0.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Completed 200 OK in 206ms (Views: 135.8ms | ActiveRecord: 62.9ms | Allocations: 116774)
+
+
+Started POST "/users/" for ::1 at 2020-04-14 16:37:40 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"bye@bye.com", "password"=>"[FILTERED]", "first_name"=>"Artemie"}}
+[31mUnpermitted parameter: :first_name[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bye@bye.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Create (5.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "bye@bye.com"], ["password_digest", "$2a$12$phZ9YcprSUY.JtOjT4aURu9rkAC0TH4/5fw3CdgHEkMhQeE/g/1Vy"], ["created_at", "2020-04-14 20:37:40.481832"], ["updated_at", "2020-04-14 20:37:40.481832"]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[35m (11.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+Completed 201 Created in 241ms (Views: 0.9ms | ActiveRecord: 16.7ms | Allocations: 8208)
+
+
+Started GET "/courts" for ::1 at 2020-04-14 16:39:07 -0400
+Processing by CourtsController#index as HTML
+  [1m[36mCourt Load (0.7ms)[0m  [1m[34mSELECT "courts".* FROM "courts"[0m
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mReservation Load (0.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mReservation Load (4.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Completed 200 OK in 13ms (Views: 7.6ms | ActiveRecord: 5.6ms | Allocations: 3066)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-14 16:39:07 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 43ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 754)
+
+
+Started GET "/courts" for ::1 at 2020-04-14 16:41:01 -0400
+Processing by CourtsController#index as HTML
+  [1m[36mCourt Load (0.5ms)[0m  [1m[34mSELECT "courts".* FROM "courts"[0m
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Started GET "/auth/verify" for ::1 at 2020-04-14 16:41:01 -0400
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Processing by AuthenticationController#verify as HTML
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 17.2ms | ActiveRecord: 2.2ms | Allocations: 4097)
+
+
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 2.0ms | Allocations: 1910)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-14 16:41:04 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"auth"=>{"email"=>"bye@bye.com", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"email"=>"bye@bye.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bye@bye.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:5:in `login'
+Completed 200 OK in 215ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1128)
+
+
+Started GET "/courts/3" for ::1 at 2020-04-14 16:41:06 -0400
+Started GET "/courts/3" for ::1 at 2020-04-14 16:41:06 -0400
+Processing by CourtsController#show as HTML
+Processing by CourtsController#show as HTML
+  Parameters: {"id"=>"3"}
+  Parameters: {"id"=>"3"}
+  [1m[36mCourt Load (0.3ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCourt Load (0.4ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  [1m[36mReservation Load (0.8ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  [1m[36mReservation Load (0.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+Completed 200 OK in 39ms (Views: 35.1ms | ActiveRecord: 1.0ms | Allocations: 3386)
+
+
+Completed 200 OK in 39ms (Views: 2.7ms | ActiveRecord: 0.8ms | Allocations: 3566)
+
+
+Started DELETE "/courts/:id/reservations/89" for ::1 at 2020-04-14 16:41:07 -0400
+Processing by ReservationsController#destroy as HTML
+  Parameters: {"court_id"=>":id", "id"=>"89"}
+  [1m[36mReservation Load (0.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 89], ["LIMIT", 1]]
+  ↳ app/controllers/reservations_controller.rb:22:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[36mReservation Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 89]]
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 41], ["LIMIT", 1]]
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 41]]
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+Completed 204 No Content in 9ms (ActiveRecord: 2.3ms | Allocations: 4256)
+
+
+Started GET "/courts/4" for ::1 at 2020-04-14 16:41:11 -0400
+Started GET "/courts/4" for ::1 at 2020-04-14 16:41:11 -0400
+Processing by CourtsController#show as HTML
+Processing by CourtsController#show as HTML
+  Parameters: {"id"=>"4"}
+  Parameters: {"id"=>"4"}
+  [1m[36mCourt Load (0.5ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCourt Load (0.3ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  [1m[36mReservation Load (1.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  [1m[36mReservation Load (0.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 1.5ms | Allocations: 3105)
+
+
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.9ms | Allocations: 3226)
+
+
+Started POST "/courts/4/reservations" for ::1 at 2020-04-14 16:41:14 -0400
+Processing by ReservationsController#create as HTML
+  Parameters: {"reservation"=>{"name"=>"ball", "start_time"=>"8:00AM", "end_time"=>"9:00AM"}, "court_id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mCourt Load (0.2ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/reservations_controller.rb:4:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reservations_controller.rb:8:in `create'
+  [1m[36mReservation Create (4.0ms)[0m  [1m[32mINSERT INTO "reservations" ("user_id", "court_id", "created_at", "updated_at", "name", "start_time", "end_time") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["user_id", 43], ["court_id", 4], ["created_at", "2020-04-14 20:41:14.249143"], ["updated_at", "2020-04-14 20:41:14.249143"], ["name", "ball"], ["start_time", "8:00AM"], ["end_time", "9:00AM"]]
+  ↳ app/controllers/reservations_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reservations_controller.rb:8:in `create'
+  [1m[36mReservation Load (0.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/reservations_controller.rb:9:in `create'
+Completed 200 OK in 12ms (Views: 1.6ms | ActiveRecord: 5.0ms | Allocations: 4737)
+
+
+Started GET "/courts/3" for ::1 at 2020-04-14 16:41:17 -0400
+Started GET "/courts/3" for ::1 at 2020-04-14 16:41:17 -0400
+Processing by CourtsController#show as HTML
+Processing by CourtsController#show as HTML
+  Parameters: {"id"=>"3"}
+  Parameters: {"id"=>"3"}
+  [1m[36mCourt Load (0.8ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCourt Load (0.3ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+Completed 200 OK in 8ms (Views: 2.8ms | ActiveRecord: 2.0ms | Allocations: 3105)
+
+
+Completed 200 OK in 7ms (Views: 3.1ms | ActiveRecord: 0.7ms | Allocations: 3226)
+
+
+Started POST "/courts/3/reservations" for ::1 at 2020-04-14 16:41:20 -0400
+Processing by ReservationsController#create as HTML
+  Parameters: {"reservation"=>{"name"=>"Artemie Amari", "start_time"=>"7:00AM", "end_time"=>"8:00AM"}, "court_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mCourt Load (0.2ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/reservations_controller.rb:4:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reservations_controller.rb:8:in `create'
+  [1m[36mReservation Create (0.5ms)[0m  [1m[32mINSERT INTO "reservations" ("user_id", "court_id", "created_at", "updated_at", "name", "start_time", "end_time") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["user_id", 43], ["court_id", 3], ["created_at", "2020-04-14 20:41:20.345658"], ["updated_at", "2020-04-14 20:41:20.345658"], ["name", "Artemie Amari"], ["start_time", "7:00AM"], ["end_time", "8:00AM"]]
+  ↳ app/controllers/reservations_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reservations_controller.rb:8:in `create'
+  [1m[36mReservation Load (0.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/reservations_controller.rb:9:in `create'
+Completed 200 OK in 9ms (Views: 1.7ms | ActiveRecord: 1.8ms | Allocations: 4649)
+
+
+Started GET "/courts/4" for ::1 at 2020-04-14 16:41:23 -0400
+Started GET "/courts/4" for ::1 at 2020-04-14 16:41:23 -0400
+Processing by CourtsController#show as HTML
+Processing by CourtsController#show as HTML
+  Parameters: {"id"=>"4"}
+  Parameters: {"id"=>"4"}
+  [1m[36mCourt Load (0.5ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  [1m[36mCourt Load (0.7ms)[0m  [1m[34mSELECT "courts".* FROM "courts" WHERE "courts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/courts_controller.rb:49:in `set_court'
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+  ↳ app/controllers/courts_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 2.2ms | Allocations: 3254)
+
+
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 1.0ms | Allocations: 3524)
+
+
+Started DELETE "/courts/:id/reservations/90" for ::1 at 2020-04-14 16:41:25 -0400
+Processing by ReservationsController#destroy as HTML
+  Parameters: {"court_id"=>":id", "id"=>"90"}
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 90], ["LIMIT", 1]]
+  ↳ app/controllers/reservations_controller.rb:22:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[36mReservation Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 90]]
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[36mUser Destroy (26.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 43]]
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/reservations_controller.rb:23:in `destroy'
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 27.6ms | Allocations: 4039)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  update or delete on table "users" violates foreign key constraint "fk_rails_48a92fce51" on table "reservations"
+DETAIL:  Key (id)=(43) is still referenced from table "reservations".
+):
+  
+app/controllers/reservations_controller.rb:23:in `destroy'
+Started GET "/courts" for ::1 at 2020-04-14 16:55:26 -0400
+Started GET "/auth/verify" for ::1 at 2020-04-14 16:55:26 -0400
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#verify as HTML
+  [1m[35m (22.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CourtsController#index as HTML
+  [1m[36mCourt Load (0.4ms)[0m  [1m[34mSELECT "courts".* FROM "courts"[0m
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 24ms (Views: 0.1ms | ActiveRecord: 8.0ms | Allocations: 11870)
+
+
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Completed 200 OK in 76ms (Views: 57.2ms | ActiveRecord: 16.6ms | Allocations: 21195)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-14 16:55:29 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"auth"=>{"email"=>"bye@bye.com", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"email"=>"bye@bye.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bye@bye.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:5:in `login'
+Completed 200 OK in 219ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1153)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-14 16:55:40 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"auth"=>{"email"=>"bye@bye.com", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"email"=>"bye@bye.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bye@bye.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:5:in `login'
+Completed 200 OK in 214ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 977)
+
+
+Started GET "/courts" for ::1 at 2020-04-14 16:56:53 -0400
+Started GET "/auth/verify" for ::1 at 2020-04-14 16:56:53 -0400
+  [1m[35m (6.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#verify as HTML
+Processing by CourtsController#index as HTML
+  [1m[36mCourt Load (0.5ms)[0m  [1m[34mSELECT "courts".* FROM "courts"[0m
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 63ms (Views: 0.1ms | ActiveRecord: 35.5ms | Allocations: 16025)
+
+
+  [1m[36mReservation Load (1.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Completed 200 OK in 83ms (Views: 65.4ms | ActiveRecord: 12.3ms | Allocations: 21211)
+
+
+Started POST "/users/" for ::1 at 2020-04-14 16:57:31 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"yo@yo.com", "password"=>"[FILTERED]", "first_name"=>"Yo"}}
+[31mUnpermitted parameter: :first_name[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "yo@yo.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "yo@yo.com"], ["password_digest", "$2a$12$.2Qn7RQ7p.n.wB8dGEusGexCTORDFKiRPPfJY5vopGQjZ3Utosr/C"], ["created_at", "2020-04-14 20:57:32.135161"], ["updated_at", "2020-04-14 20:57:32.135161"]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+Completed 201 Created in 226ms (Views: 0.9ms | ActiveRecord: 3.1ms | Allocations: 4275)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-14 16:57:44 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"auth"=>{"email"=>"yo@yo.com", "password"=>"[FILTERED]", "first_name"=>"Yo"}, "authentication"=>{"auth"=>{"email"=>"yo@yo.com", "password"=>"[FILTERED]", "first_name"=>"Yo"}}}
+[31mUnpermitted parameter: :first_name[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "yo@yo.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:5:in `login'
+[31mUnpermitted parameter: :first_name[0m
+Completed 200 OK in 213ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1218)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-14 16:57:49 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"auth"=>{"email"=>"yo@yo.com", "password"=>"[FILTERED]", "first_name"=>"Yo"}, "authentication"=>{"auth"=>{"email"=>"yo@yo.com", "password"=>"[FILTERED]", "first_name"=>"Yo"}}}
+[31mUnpermitted parameter: :first_name[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "yo@yo.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:5:in `login'
+[31mUnpermitted parameter: :first_name[0m
+Completed 401 Unauthorized in 212ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 872)
+
+
+Started POST "/users/" for ::1 at 2020-04-14 16:58:00 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"yos@yos.com", "password"=>"[FILTERED]", "first_name"=>"Yoseph"}}
+[31mUnpermitted parameter: :first_name[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "yos@yos.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "yos@yos.com"], ["password_digest", "$2a$12$KUX543V64fMibx4WDHJ1y..mVV8.uqK5v6q9gPi7mI0.eFmmYrtpu"], ["created_at", "2020-04-14 20:58:01.124412"], ["updated_at", "2020-04-14 20:58:01.124412"]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+Completed 201 Created in 219ms (Views: 0.4ms | ActiveRecord: 8.1ms | Allocations: 3666)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-14 16:58:14 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"auth"=>{"email"=>"yos@yos.com", "password"=>"[FILTERED]", "first_name"=>"Yoseph"}, "authentication"=>{"auth"=>{"email"=>"yos@yos.com", "password"=>"[FILTERED]", "first_name"=>"Yoseph"}}}
+[31mUnpermitted parameter: :first_name[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "yos@yos.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:5:in `login'
+[31mUnpermitted parameter: :first_name[0m
+Completed 200 OK in 208ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1033)
+
+
+Started GET "/courts" for ::1 at 2020-04-14 16:59:16 -0400
+Processing by CourtsController#index as HTML
+  [1m[36mCourt Load (0.5ms)[0m  [1m[34mSELECT "courts".* FROM "courts"[0m
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 3]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."court_id" = $1[0m  [["court_id", 4]]
+  ↳ app/controllers/courts_controller.rb:7:in `index'
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 1.1ms | Allocations: 3201)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-14 16:59:16 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 45], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 726)
+
+
