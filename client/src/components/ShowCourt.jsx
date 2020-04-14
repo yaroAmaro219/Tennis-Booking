@@ -10,13 +10,6 @@ class ShowCourt extends Component {
     }
   }
 
-  // getReservation = []
-  // const columns = []
-
-
-  // showReservations = () => {
-  //   this.props.reservation.map()
-  // }
 
   render() {
     return (

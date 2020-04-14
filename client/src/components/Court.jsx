@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import { Form } from
+import { Link } from 'react-router-dom'
+import { Form, Table } from
   'antd';
 import DatePicker from 'react-date-picker'
 import '../App.css'
@@ -18,6 +18,37 @@ class Court extends Component {
         name: '',
         start_time: '',
       },
+      columns: [
+        {
+          title: 'Full Name',
+          dataIndex: 'name',
+          key: 'name',
+        },
+        {
+          title: 'Start Time',
+          dataIndex: 'start_time',
+          key: 'start_time',
+        },
+        {
+          title: 'End Time',
+          dataIndex: 'end_time',
+          key: 'end_time',
+        },
+      ],
+      dataSource: [
+        {
+          key: '1',
+          name: 'Mike',
+          start_time: '7:00AM',
+          end_time: '8:00AM',
+        },
+        {
+          key: '2',
+          name: 'John',
+          start_time: '42',
+          end_time: '10 Downing Street',
+        },
+      ]
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -164,150 +195,6 @@ class Court extends Component {
       }))
   }
 
-  showReserved = () => {
-
-  }
-
-
-
-  // data = () => {
-  //   {
-  //     this.props.data
-  //       &&
-  //       this.props.data.map(name => 
-  //         name: name.name,
-
-  //       )}
-  // }
-  // reservations = () => {
-  //   this.props.reservations.map(court => {
-  //     console.log(court.reservations)
-  //     return court.reservations
-
-  //   })
-  // }
-
-  // renderDay = (props, currentDate, selectedDate) => {
-
-  //   return <td {...props}>{'0' + currentDate.date()}</td>;
-
-  // }
-
-  // renderMonth = (props, month, year, selectedDate) => {
-
-  //   return <td {...props}>{month}</td>;
-
-  // }
-  // row = () => {
-  //   {
-  //     this.props.reservation
-  //     &&
-  //     this.props.reservation.map(reservation => (
-  //       <form onSubmit={(e) => {
-  //         e.preventDefault();
-  //         this.props.updateReservation(reservation);
-  //         this.setState({
-  //           isEdit: false
-  //         })
-  //       }}>
-  //         <input
-  //           name="name"
-  //           type="text"
-  //           value={this.props.formData.name}
-  //           onChange={this.props.handleChange} />
-  //         <button>Submit</button>
-  //       </form>
-  //     ))
-  //   }
-  // } 
-
-  // data = () => { 
-  //   {this.state.data.}
-  // }
-
-  // dataSource() {
-  //   <input 
-  //     name="name"
-  //     type="text"
-  //     value={this.state.data.name}
-  //     onChange={this.handleChange}/>
-  // }
-
-  // form = () => {
-  //   return (
-  //     <form onSubmit={(e) => {
-  //       e.preventDefault();
-  //       this.handleSubmit();
-  //       this.setState({ isAdd: false })
-  //     }}>
-  //       <legend>Hi, Book a reservation here</legend>
-  //       <input
-  //         name="name"
-  //         type="text"
-  //         value={this.state.data.name}
-  //         onChange={this.handleChange} />
-  //       <input
-  //       name="start time"
-  //       type="text"
-  //       value={this.state.selectedSlot.start_time}
-  //       onChange={this.handleChange} />
-  //     <input
-  //       name="end time"
-  //       type="text"
-  //       value={this.state.selectedSlot.end_time}
-  //       onChange={this.handleChange} />
-  //       <button onClick={() => {
-  //         this.setState({ isAdd: true })
-  //       }}>Submit</button>
-  //     </form>
-  //   )
-  // }
-
-  // reservationForm = (e) => {
-  //   this.setState({
-
-  //   })
-  // }
-
-
-  // handleAdd = () => {
-  //   const { count, dataSource } = this.state;
-  //   const newData = {
-  //     key: count,
-  //     name: `Edward King ${count}`,
-  //     age: 32,
-  //     address: `London, Park Lane no. ${count}`,
-  //   };
-  //   this.setState({
-  //     dataSource: [...dataSource, newData],
-  //     count: count + 1,
-  //   });
-  // };
-
-  // handleSave = row => {
-  //   const newData = [...this.state.dataSource];
-  //   const index = newData.findIndex(item => row.key === item.key);
-  //   const item = newData[index];
-  //   newData.splice(index, 1, {
-  //     ...item,
-  //     ...row,
-  //   });
-  //   this.setState({ dataSource: newData });
-  // };
-  // handleDelete = key => {
-  //   const dataSource = [...this.state.dataSource];
-  //   this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
-  // };
-
-  // addReservation = () => {
-  //   const newReservation = await postReservation(this.state.formData)
-  //   this.setState(prevState => ({
-  //     data: {
-  //       name: "",
-  //     }
-  //   }))
-  // }
-
 
 
 
@@ -368,22 +255,22 @@ class Court extends Component {
         !this.props.reservation.reservations.map((res) => res.start_time).includes(time.start_time)
     }).map((time) => (
       <Form>
-        <h1>
-          {time.start_time} -
+        <div class="reservationForm">
+        <p class="time">
+            {time.start_time}
+            {'  to  '}
           {time.end_time}
-        </h1>
+        </p>
         <input
           name="name"
           type="text"
           onChange={this.props.handleChange} />
         <button onClick={(e) => {
           this.props.addReservation(this.props.match.params.id, time.start_time, time.end_time)
-        }}>Submit</button>
-        
-        
+          }}>Submit</button>
+        </div>  
       </Form>
     ))
-    console.log(this.state)
 
     return (
       <>
@@ -394,30 +281,33 @@ class Court extends Component {
               {this.props.reservation.name.toUpperCase()} Court
             </h1>
           }
-          <DatePicker
+          {/* <DatePicker
             onChange={this.onChange}
             value={this.state.date}
-          />
-          <div>
-            {this.props.reservation  
+          /> */}
+          <div class="reservation">
+            {this.props.reservation
               &&
               this.props.reservation.reservations.map((res) => (
-              <>
-                <p>{res.name}</p>
-                <p>{res.start_time}</p>
+                <>
+                  <div>
+                  <p>{res.name}</p>
+                  <p>{res.start_time}</p>
                   <p>{res.end_time}</p>
+                  </div>
                   <Link to={`/courts/${this.props.reservation.id}/reservations/${res.id}`}><button>Edit</button></Link>
                   <button onClick={() => (this.props.deleteReservation(res.id))}>Delete</button>
-              </>
-            ))}
+                </>
+              ))}
           </div>
+
           {form}
         </div>
 
         {/* <Table
           class="ant-table-layout"
           columns={this.state.columns}
-          dataSource={this.state.data}
+          dataSource={form}
           rowClassName="editable-row"
           pagination={false}
           scroll={{ x: 1000, y: 1000 }} /> */}

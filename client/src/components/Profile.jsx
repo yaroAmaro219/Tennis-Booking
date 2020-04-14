@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 class Profile extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       name: '',
       email: '',
@@ -11,14 +10,14 @@ class Profile extends Component {
   }
 
   render() {
-    // console.log(this.props.currentUser)
     return (
       <>
-        <h1>Hello Donald</h1>
-        <h1>{this.props.currentUser}</h1>
+        <h1>
+          Hello
+        </h1>
         </>
     )
   }
 }
 
-export default Profile
+export default Profile;
