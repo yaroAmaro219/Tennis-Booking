@@ -222,7 +222,6 @@ class App extends Component {
   // =========== Render ===========
 
   render() {
-    console.log(this.state.authFormData)
     return (
       <div>
         <nav>
