@@ -14,12 +14,10 @@ import {
   loginUser,
   registerUser,
   showCourt,
-  // showCourtItem,
   showReservation,
   postReservation,
   showReservationItem,
   putReservation,
-  // putCourtReservation,
   destroyReservation,
   removeToken,
   verifyUser,
@@ -48,16 +46,15 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getCourt();
-    // this.getReservation();
     this.handleVerify();
     this.getDate();
   }
 
   getDate = () => {
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var hours = new Date().getHours(); //Current Hours
+    var date = new Date().getDate(); 
+    var month = new Date().getMonth() + 1; 
+    var year = new Date().getFullYear(); 
+    var hours = new Date().getHours(); 
     var min = new Date().getMinutes();
     var minu =
       min === 1 ? min = '01' : min = min;
@@ -216,7 +213,6 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    // console.log(e.target.value, e.target.name)
     const value = e.target.value;
     this.setState({
       ...this.state,
