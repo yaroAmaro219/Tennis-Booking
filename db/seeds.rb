@@ -9,8 +9,8 @@
 User.destroy_all
 Court.destroy_all
 
-user1 = User.create!(first_name: "admin",  email: "admin222@email.com", password: "123456")
-user2 = User.create!(first_name: "admin",  email: "admin223@email.com", password: "123456")
+user1 = User.create!(first_name: "admin",  email: "admin@email.com", password: "123456")
+user2 = User.create!(first_name: "admin",  email: "admin2@email.com", password: "123456")
 
 east = Court.create!(name: "east")
 west = Court.create!(name: "west")
