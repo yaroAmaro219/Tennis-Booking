@@ -32,9 +32,9 @@ class App extends Component {
       reservation: null,
       court: [],
       courtItem: null,
-      selectedCourt: '',
+      // selectedCourt: '',
       name: '',
-      selectedSlot: "",
+      // selectedSlot: "",
       authFormData: {
         email: "",
         password: ""
