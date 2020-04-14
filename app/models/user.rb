@@ -10,8 +10,6 @@ class User < ApplicationRecord
 	def frontend_data
 {
 	id: id,
-	first_name: first_name,
-	user_name: user_name,
 	email: email,
 	created_at: created_at,
 	updated_at: updated_at
