@@ -8,6 +8,7 @@
 
 User.destroy_all
 Court.destroy_all
+Reservation.destroy_all
 
 user1 = User.create!(first_name: "admin",  email: "admin@email.com", password: "123456")
 user2 = User.create!(first_name: "admin",  email: "admin2@email.com", password: "123456")

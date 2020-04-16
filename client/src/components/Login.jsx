@@ -10,8 +10,8 @@ const Login = (props) => {
 			<form onSubmit={(e) => {
 				e.preventDefault()
 				props.handleLogin()	}}>
-			<input name="email" type="text" value={props.formData.email} onChange={props.handleChange} />
-			<input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
+			<input placeholder="Email" name="email" type="text" value={props.formData.email} onChange={props.handleChange} />
+			<input placeholder="password" name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
 			<button>Login</button>
         <button><Link to="/register">Register</Link></button>
 		</form>
