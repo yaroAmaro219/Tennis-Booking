@@ -151,17 +151,7 @@ class Court extends Component {
       reservation: e.target.value
     })
     e.preventDefault();
-  }
-
-  // handleReservation = () => {
-  //   {
-  //     this.props.reservation === true
-  //       ?
-  //       this.props. (full)
-  //       :
-  //       ''
-  // }
-
+  } 
 
 
   addReservationToCourt = async (courtItem) => {
@@ -303,16 +293,6 @@ class Court extends Component {
 
           {form}
         </div>
-
-        {/* <Table
-          class="ant-table-layout"
-          columns={this.state.columns}
-          dataSource={form}
-          rowClassName="editable-row"
-          pagination={false}
-          scroll={{ x: 1000, y: 1000 }} /> */}
-
-
       </>
     )
   }

@@ -19,6 +19,18 @@ class UpdateReservation extends Component {
             value={this.props.name}
             onChange={this.props.handleChange}
           />
+          <input
+            type="text"
+            name="name"
+            value={this.props.start_time}
+            onChange={this.props.handleChange}
+          />
+          <input
+            type="text"
+            name="name"
+            value={this.props.end_time}
+            onChange={this.props.handleChange}
+          />
           <p>{this.props.reservation.start_time} - {this.props.reservation.end_time}</p>
           <button>Submit</button>
         </form>

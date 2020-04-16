@@ -28,6 +28,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      time: '',
       date: '',
       currentUser: null,
       reservation: null,
@@ -57,6 +58,7 @@ class App extends Component {
     var hours = new Date().getHours(); 
     var min = new Date().getMinutes();
     var minu =
+      min = min;
       min === 1 ? min = '01' : min = min;
       min === 2 ? min = '02' : min = min;
       min === 3 ? min = '03' : min = min;
@@ -68,33 +70,22 @@ class App extends Component {
       min === 9 ? min = '09' : min = min;
     var time = (hours >= 12) ? "PM" : "AM";
     var hours12 =
-      hours === 1 ? hours = '1:00' : hours = hours;
-      hours === 2 ? hours = '2:00' : hours = hours;
-      hours === 3 ? hours = '3:00' : hours = hours;
-      hours === 4 ? hours = '4:00' : hours = hours;
-      hours === 5 ? hours = '5:00' : hours = hours;
-      hours === 6 ? hours = '6:00' : hours = hours;
-      hours === 7 ? hours = '7:00' : hours = hours;
-      hours === 8 ? hours = '8:00' : hours = hours;
-      hours === 9 ? hours = '9:00' : hours = hours;
-      hours === 10 ? hours = '10:' : hours = hours;
-      hours === 11 ? hours = '11:00' : hours = hours;
-      hours === 12 ? hours = '12:00' : hours = hours;
-      hours === 13 ? hours = '1:00' : hours = hours;
-      hours === 14 ? hours = '2:00' : hours = hours;
-      hours === 15 ? hours = '3:00' : hours = hours;
-      hours === 16 ? hours = '4:00' : hours = hours;
-      hours === 17 ? hours = '5:00' : hours = hours;
-      hours === 18 ? hours = '6:00' : hours = hours;
-      hours === 19 ? hours = '7:00' : hours = hours;
-      hours === 20 ? hours = '8:00' : hours = hours;
-      hours === 21 ? hours = '9:00' : hours = hours;
-      hours === 22 ? hours = '10:00' : hours = hours;
-      hours === 23 ? hours = '11:00' : hours = hours;
-      hours === 24 ? hours = '12:00' : hours = hours;
+      hours = hours;
+      hours === 13 ? hours = '1' : hours = hours;
+      hours === 14 ? hours = '2' : hours = hours;
+      hours === 15 ? hours = '3' : hours = hours;
+      hours === 16 ? hours = '4' : hours = hours;
+      hours === 17 ? hours = '5' : hours = hours;
+      hours === 18 ? hours = '6' : hours = hours;
+      hours === 19 ? hours = '7' : hours = hours;
+      hours === 20 ? hours = '8' : hours = hours;
+      hours === 21 ? hours = '9' : hours = hours;
+      hours === 22 ? hours = '10' : hours = hours;
+      hours === 23 ? hours = '11' : hours = hours;
+      hours === 24 ? hours = '12' : hours = hours;
     this.setState({
       date:
-      month + '/' + date + '/' + year + ' ' + hours + minu + ' ' + time
+      month + '/' + date + '/' + year + ' ' + hours12 + ':' + minu + ' ' + time
     });
   }
 

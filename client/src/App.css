@@ -1,8 +1,6 @@
 a {
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
-  /* padding: 5%;
-  margin: 5% 5%; */
 }
 
 a:hover {
@@ -24,12 +22,6 @@ nav {
   position: relative;
   display: flex-row;
 }
-
-/* nav div ul a {
-  padding: 1% 1%;
-  margin: 3% 3%;
-  width: 10%;
-} */
 
 h1.home {
   text-align: center;
@@ -95,4 +87,3 @@ button.logout {
   font-size: 12px;
   margin-top: -4px;
 }
-
