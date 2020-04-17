@@ -30,6 +30,8 @@ class App extends Component {
     this.state = {
       time: '',
       date: '',
+      start_time: '',
+      end_time: '',
       currentUser: null,
       reservation: null,
       court: [],
@@ -84,7 +86,7 @@ class App extends Component {
       hours === 23 ? hours = '11' : hours = hours;
       hours === 24 ? hours = '12' : hours = hours;
     this.setState({
-      date:
+      time:
       month + '/' + date + '/' + year + ' ' + hours12 + ':' + minu + ' ' + time
     });
   }
@@ -111,7 +113,12 @@ class App extends Component {
   }
 
   updateReservation = async (id) => {
-    const updatedReservationItem = await putReservation(id, { name: this.state.name })
+    const updatedReservationItem = await putReservation(id, {
+      name: this.state.name,
+      start_time: this.state.start_time,
+      end_time: this.state.end_time,
+      date: this.state.date
+    })
     this.setState(prevState => ({
       reservation: {
         ...prevState.reservation,
@@ -124,6 +131,9 @@ class App extends Component {
         })
       },
       name: '',
+      start_time: '',
+      end_time: '',
+      date: ''
     }))
     this.props.history.push('/courts')
   }
@@ -140,11 +150,12 @@ class App extends Component {
     }))
   }
 
-  addReservation = async (id, start, end) => {
+  addReservation = async (id, start, end, date) => {
     const newReservation = await postReservation(id, {
       name: this.state.name,
       start_time: start,
-      end_time: end
+      end_time: end,
+      date: date
       })
       this.setState(prevState => ({
       reservation: newReservation,
@@ -213,7 +224,6 @@ class App extends Component {
   // =========== Render ===========
 
   render() {
-    console.log(this.state.authFormData)
     return (
       <div>
         <nav>
@@ -223,7 +233,7 @@ class App extends Component {
             <div>
               <ul>
                 <Link class="courts" to="/courts">  Courts </Link>
-                <Link to="/users">  Profile  </Link>
+                {/* <Link to="/users">  Profile  </Link> */}
                 <h1 class="date">
                   {this.state.date}
                 </h1>
@@ -279,6 +289,8 @@ class App extends Component {
               const reservation = this.state.reservation.reservations.find((res) => res.id === parseInt(props.match.params.id))
               return <UpdateReservation
                 date={this.state.date}
+                start_time={this.state.start_time}
+                
                 reservation={reservation}
                 handleChange={this.handleChange}
                 name={this.state.name}

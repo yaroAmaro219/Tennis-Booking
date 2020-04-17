@@ -11,6 +11,8 @@ class Court extends Component {
 
     this.state = {
       date: new Date(),
+      start_time: '',
+      end_time: '',
       isAdd: false,
       isEdit: false,
       reservation: '',
@@ -18,37 +20,6 @@ class Court extends Component {
         name: '',
         start_time: '',
       },
-      columns: [
-        {
-          title: 'Full Name',
-          dataIndex: 'name',
-          key: 'name',
-        },
-        {
-          title: 'Start Time',
-          dataIndex: 'start_time',
-          key: 'start_time',
-        },
-        {
-          title: 'End Time',
-          dataIndex: 'end_time',
-          key: 'end_time',
-        },
-      ],
-      dataSource: [
-        {
-          key: '1',
-          name: 'Mike',
-          start_time: '7:00AM',
-          end_time: '8:00AM',
-        },
-        {
-          key: '2',
-          name: 'John',
-          start_time: '42',
-          end_time: '10 Downing Street',
-        },
-      ]
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -73,66 +44,29 @@ class Court extends Component {
 
   }
 
-  // table = () => {
-  //   let timeSlots = [
+  // name = () => {
+  //   {
+  //     this.props.data
+  //       &&
+  //       this.props.data.map(name => (
+  //         <form onSubmit={(e) => {
+  //           e.preventDefault();
+  //           this.props.updateReservation(name);
+  //           this.setState({
+  //             isEdit: false
+  //           })
+  //         }}>
+  //           <input
+  //             name="name"
+  //             type="text"
+  //             value={name.name}
+  //             onChange={this.props.handleChange} />
+  //           <button>Submit</button>
+  //         </form>
+  //       ))
+  //   }
 
-  //     {
-  //       start_time: '6:00AM',
-  //       end_time: '7:00AM'
-  //     },
-  //     {
-  //       start_time: '7:00AM',
-  //       end_time: '8:00AM'
-  //     },
-  //     {
-  //       start_time: '8:00AM',
-  //       end_time: '9:00AM'
-  //     },
-  //     {
-  //       start_time: '9:00AM',
-  //       end_time: '10:00AM'
-  //     }
-  //   ]
-  //   let form = timeSlots.map(time => (
-  //     <Form>
-  //       <input
-  //         name="name"
-  //         type="text"
-  //         onChange={this.props.handleChange} />
-  //       <button>Submit</button>
-  //       <div>
-  //         {time.start_time},
-  //         {time.end_time}
-  //       </div>
-  //     </Form>
-  //   ))
-  //   return form
   // }
-
-  name = () => {
-
-    {
-      this.props.data
-        &&
-        this.props.data.map(name => (
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            this.props.updateReservation(name);
-            this.setState({
-              isEdit: false
-            })
-          }}>
-            <input
-              name="name"
-              type="text"
-              value={name.name}
-              onChange={this.props.handleChange} />
-            <button>Submit</button>
-          </form>
-        ))
-    }
-
-  }
 
 
   handleChange = (e) => {
@@ -184,9 +118,6 @@ class Court extends Component {
         }
       }))
   }
-
-
-
 
   render() {
     let timeSlots = [
@@ -256,7 +187,7 @@ class Court extends Component {
           type="text"
           onChange={this.props.handleChange} />
         <button onClick={(e) => {
-          this.props.addReservation(this.props.match.params.id, time.start_time, time.end_time)
+          this.props.addReservation(this.props.match.params.id, time.start_time, time.end_time, time.date)
           }}>Submit</button>
         </div>  
       </Form>
@@ -283,14 +214,14 @@ class Court extends Component {
                   <div>
                   <p>{res.name}</p>
                   <p>{res.start_time}</p>
-                  <p>{res.end_time}</p>
+                    <p>{res.end_time}</p>
+                    <p>{res.date}</p>
                   </div>
                   <Link to={`/courts/${this.props.reservation.id}/reservations/${res.id}`}><button>Edit</button></Link>
                   <button onClick={() => (this.props.deleteReservation(res.id))}>Delete</button>
                 </>
               ))}
           </div>
-
           {form}
         </div>
       </>
