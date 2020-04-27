@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Table } from
+import { Form } from
   'antd';
-import DatePicker from 'react-date-picker'
-import '../App.css'
 
 class Court extends Component {
   constructor(props) {
@@ -26,48 +24,21 @@ class Court extends Component {
   }
 
   reservationValue = () => {
-
     {
       this.props.reservation
-        &&
-        this.props.reservation.map(name => (
-          <form onSubmit={(e) => {
-            e.preventDefault()
-            this.props.updateReservation(name);
-            this.setState({
-              isEdit: false
-            })
-          }}>
-          </form>
-        ))
+      &&
+      this.props.reservation.map(name => (
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          this.props.updateReservation(name);
+          this.setState({
+            isEdit: false
+          })
+        }}>
+        </form>
+      ))
     }
-
   }
-
-  // name = () => {
-  //   {
-  //     this.props.data
-  //       &&
-  //       this.props.data.map(name => (
-  //         <form onSubmit={(e) => {
-  //           e.preventDefault();
-  //           this.props.updateReservation(name);
-  //           this.setState({
-  //             isEdit: false
-  //           })
-  //         }}>
-  //           <input
-  //             name="name"
-  //             type="text"
-  //             value={name.name}
-  //             onChange={this.props.handleChange} />
-  //           <button>Submit</button>
-  //         </form>
-  //       ))
-  //   }
-
-  // }
-
 
   handleChange = (e) => {
     const value = e.target.value;
@@ -202,10 +173,6 @@ class Court extends Component {
               {this.props.reservation.name.toUpperCase()} Court
             </h1>
           }
-          {/* <DatePicker
-            onChange={this.onChange}
-            value={this.state.date}
-          /> */}
           <div class="reservation">
             {this.props.reservation
               &&

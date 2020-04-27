@@ -7,7 +7,6 @@ import Profile from './components/Profile'
 import ShowCourt from './components/ShowCourt'
 import Court from './components/Court'
 import UpdateReservation from './components/UpdateReservation'
-import Footer from './components/Footer'
 import './App.css'
 
 import {
@@ -290,7 +289,6 @@ class App extends Component {
               return <UpdateReservation
                 date={this.state.date}
                 start_time={this.state.start_time}
-                
                 reservation={reservation}
                 handleChange={this.handleChange}
                 name={this.state.name}
@@ -304,9 +302,10 @@ class App extends Component {
           </Switch>
         </div>
         <div class="image">
-                  <img src="https://i.imgur.com/GufjsYr.jpg" title="source: imgur.com" />
-                  </div>
-        <Footer />
+          <img
+            src="https://i.imgur.com/GufjsYr.jpg"
+            title="source: imgur.com" />
+        </div>
       </div>
     )
   }

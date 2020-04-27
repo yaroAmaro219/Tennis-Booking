@@ -42,7 +42,6 @@ class ShowReservation extends Component {
         <hr />
         {this.state.isAdd
           ?
-
           <div>
             <form onSubmit={(e) => {
               e.preventDefault();
