@@ -6,7 +6,6 @@ import Register from './components/Register'
 import ShowCourt from './components/ShowCourt'
 import Court from './components/Court'
 import UpdateReservation from './components/UpdateReservation'
-import Footer from './components/Footer'
 import './App.css'
 
 import {
@@ -29,6 +28,8 @@ class App extends Component {
     this.state = {
       time: '',
       date: '',
+      start_time: '',
+      end_time: '',
       currentUser: null,
       reservation: null,
       court: [],
@@ -57,7 +58,7 @@ class App extends Component {
     var hours = new Date().getHours(); 
     var min = new Date().getMinutes();
     var minu =
-      min === 0 ? min = '00' : min = min;
+      min = min;
       min === 1 ? min = '01' : min = min;
       min === 2 ? min = '02' : min = min;
       min === 3 ? min = '03' : min = min;
@@ -69,6 +70,7 @@ class App extends Component {
       min === 9 ? min = '09' : min = min;
     var time = (hours >= 12) ? "PM" : "AM";
     var hours12 =
+      hours = hours;
       hours === 13 ? hours = '1' : hours = hours;
       hours === 14 ? hours = '2' : hours = hours;
       hours === 15 ? hours = '3' : hours = hours;
@@ -83,7 +85,7 @@ class App extends Component {
       hours === 24 ? hours = '12' : hours = hours;
     this.setState({
       time:
-      month + '/' + date + '/' + year + ' ' + hours + ':' + min + ' ' + time
+      month + '/' + date + '/' + year + ' ' + hours12 + ':' + minu + ' ' + time
     });
   }
 
@@ -150,7 +152,7 @@ class App extends Component {
       name: this.state.name,
       start_time: start,
       end_time: end,
-      date: date.toString(),
+      date: date
       })
       this.setState(prevState => ({
       reservation: newReservation,
@@ -277,6 +279,7 @@ class App extends Component {
               const reservation = this.state.reservation.reservations.find((res) => res.id === parseInt(props.match.params.id))
               return <UpdateReservation
                 date={this.state.date}
+                start_time={this.state.start_time}
                 reservation={reservation}
                 handleChange={this.handleChange}
                 name={this.state.name}
@@ -292,9 +295,10 @@ class App extends Component {
           </Switch>
         </div>
         <div class="image">
-                  <img src="https://i.imgur.com/GufjsYr.jpg" title="source: imgur.com" />
-                  </div>
-        <Footer />
+          <img
+            src="https://i.imgur.com/GufjsYr.jpg"
+            title="source: imgur.com" />
+        </div>
       </div>
     )
   }

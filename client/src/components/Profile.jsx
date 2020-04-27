@@ -13,7 +13,7 @@ class Profile extends Component {
     return (
       <>
         <h1>
-          Hello
+          {this.props.currentUser.first_name}
         </h1>
         </>
     )

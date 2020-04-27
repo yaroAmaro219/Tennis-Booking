@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Table } from
+import { Form } from
   'antd';
-import DatePicker from 'react-date-picker'
-import '../App.css'
 
 class Court extends Component {
   constructor(props) {
@@ -11,6 +9,8 @@ class Court extends Component {
 
     this.state = {
       date: new Date(),
+      start_time: '',
+      end_time: '',
       isAdd: false,
       isEdit: false,
       reservation: '',
@@ -38,7 +38,6 @@ class Court extends Component {
           </form>
         ))
     }
-
   }
 
   name = () => {
@@ -62,10 +61,8 @@ class Court extends Component {
             <button>Submit</button>
           </form>
         ))
-    }
-
   }
-
+	}
 
   handleChange = (e) => {
     const value = e.target.value;
@@ -85,7 +82,8 @@ class Court extends Component {
       reservation: e.target.value
     })
     e.preventDefault();
-  }
+  } 
+
 
   addReservationToCourt = async (courtItem) => {
     const newReservation = this.state.reservation.find(reservations => reservations.start_time === this.state.slectedSlot)
@@ -117,8 +115,6 @@ class Court extends Component {
         }
       }))
   }
-
-
 
   render() {
     console.log(this.state.date)
@@ -216,40 +212,24 @@ class Court extends Component {
               {this.props.reservation.name.toUpperCase()} Court
             </h1>
           }
-
-          <DatePicker
-            onChange={this.onChange}
-            value={this.state.date}
-          />
-
           <div class="reservation">
             {this.props.reservation
               &&
               this.props.reservation.reservations.map((res) =>
                 <>
                   <div>
-                    <p>{res.name}</p>
-                    <p>{res.start_time}</p>
+                  <p>{res.name}</p>
+                  <p>{res.start_time}</p>
                     <p>{res.end_time}</p>
+                    <p>{res.date}</p>
                   </div>
                   <Link to={`/courts/${this.props.reservation.id}/reservations/${res.id}`}><button>Edit</button></Link>
                   <button onClick={() => (this.props.deleteReservation(res.id))}>Delete</button>
                 </>
               )}
           </div>
-
           {form}
         </div>
-
-        {/* <Table
-          class="ant-table-layout"
-          columns={this.state.columns}
-          dataSource={form}
-          rowClassName="editable-row"
-          pagination={false}
-          scroll={{ x: 1000, y: 1000 }} /> */}
-
-
       </>
     )
   }
